@@ -1,0 +1,136 @@
+{
+    "name": "chatgpt-local-copilot",
+    "displayName": "ChatGPT Local Copilot — Multi-Model AI",
+    "description": "AI coding assistant using multiple LLMs via web automation — no API keys needed",
+    "version": "1.0.0",
+    "publisher": "local",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "scripts": {
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "package": "vsce package"
+    },
+    "dependencies": {
+        "ws": "^8.16.0"
+    },
+    "devDependencies": {
+        "typescript": "^5.3.3",
+        "@types/vscode": "^1.85.0",
+        "@types/ws": "^8.5.10",
+        "@types/node": "^20.11.0"
+    },
+    "contributes": {
+        "commands": [
+            {
+                "command": "copilot.askChatGPT",
+                "title": "Ask AI (Multi-Model)",
+                "category": "Copilot"
+            },
+            {
+                "command": "copilot.fixWithAI",
+                "title": "Fix with AI",
+                "category": "Copilot"
+            },
+            {
+                "command": "copilot.explainCode",
+                "title": "Explain Code",
+                "category": "Copilot"
+            },
+            {
+                "command": "copilot.refactorCode",
+                "title": "Refactor with AI",
+                "category": "Copilot"
+            },
+            {
+                "command": "copilot.createFile",
+                "title": "Create File with AI",
+                "category": "Copilot"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "copilot.askChatGPT",
+                    "group": "copilot@1"
+                },
+                {
+                    "command": "copilot.fixWithAI",
+                    "group": "copilot@2",
+                    "when": "editorHasSelection"
+                },
+                {
+                    "command": "copilot.explainCode",
+                    "group": "copilot@3",
+                    "when": "editorHasSelection"
+                },
+                {
+                    "command": "copilot.refactorCode",
+                    "group": "copilot@4",
+                    "when": "editorHasSelection"
+                }
+            ]
+        },
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "copilot-sidebar",
+                    "title": "AI Copilot",
+                    "icon": "$(hubot)"
+                }
+            ]
+        },
+        "views": {
+            "copilot-sidebar": [
+                {
+                    "type": "webview",
+                    "id": "copilot.chatPanel",
+                    "name": "Multi-Model Chat"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "copilot.askChatGPT",
+                "key": "ctrl+shift+g",
+                "when": "editorFocus"
+            }
+        ],
+        "configuration": {
+            "title": "AI Copilot",
+            "properties": {
+                "copilot.bridgePort": {
+                    "type": "number",
+                    "default": 3210,
+                    "description": "Port for the bridge server"
+                },
+                "copilot.enabledModels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "chatgpt",
+                            "claude",
+                            "gemini",
+                            "deepseek",
+                            "qwen",
+                            "kimi"
+                        ]
+                    },
+                    "default": [
+                        "chatgpt"
+                    ],
+                    "description": "AI models to use for consensus"
+                }
+            }
+        }
+    }
+}

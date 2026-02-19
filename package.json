@@ -1,0 +1,12 @@
+{
+  "name": "chatgpt-local-copilot",
+  "version": "1.0.0",
+  "description": "Multi-Model Consensus AI Coding Engine for VS Code",
+  "private": true,
+  "scripts": {
+    "install-all": "cd bridge && npm install && cd ../automation && npm install && cd ../extension && npm install",
+    "build-all": "cd bridge && npm run build && cd ../automation && npm run build && cd ../extension && npm run compile",
+    "start-bridge": "cd bridge && node dist/server.js",
+    "build-extension": "cd extension && npm run compile"
+  }
+}
