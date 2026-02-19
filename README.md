@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ChatGPT Local Copilot — Multi-Model Consensus AI Engine
 
 A production-quality VS Code AI coding assistant that orchestrates **6 LLMs** (ChatGPT, Claude, Gemini, DeepSeek, Qwen, Kimi) via browser automation. No API keys needed — uses your existing logged-in sessions.
@@ -182,3 +183,6 @@ cd extension && npm run watch # Extension
 7. Winning/merged response is parsed into structured edits
 8. Extension shows a diff preview
 9. User clicks "Apply" → WorkspaceEdit is applied
+=======
+# Multi-Model-Consensus-AI-Engine
+>>>>>>> 082bae29dd2141ba5dca830c60431e251632695f
