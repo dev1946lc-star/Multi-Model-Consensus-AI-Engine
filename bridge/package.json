@@ -9,6 +9,7 @@
         "dev": "tsc --watch"
     },
     "dependencies": {
+        "automation": "file:../automation",
         "ws": "^8.16.0",
         "uuid": "^9.0.0"
     },
