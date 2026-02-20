@@ -4,3 +4,4 @@ export * from "./controllers/gemini";
 export * from "./controllers/deepseek";
 export * from "./controllers/qwen";
 export * from "./controllers/kimi";
+export * from "./prompt-builder";

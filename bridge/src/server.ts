@@ -12,6 +12,14 @@ wss.on("connection", ws => {
             return;
         }
 
+        if (req.type === "buildApp") {
+            const { buildApp } = await import("./planner/build-app");
+            const result = await buildApp(req.prompt);
+            ws.send(JSON.stringify({ type: "app", result }));
+            return;
+        }
+
+
         const result = await handleTask(req);
         ws.send(JSON.stringify(result));
     });

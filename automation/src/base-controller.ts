@@ -19,9 +19,21 @@ export abstract class BaseController {
         await this.page.goto(this.url);
     }
 
-    protected async waitForStableResponse(locator: any) {
+    protected async waitForStableResponse(locator: any, ms = 1500) {
         await locator.waitFor({ timeout: this.timeoutMs });
-        return locator.innerText();
+        let last = "";
+        let stable = 0;
+
+        while (stable < ms) {
+            const txt = await locator.innerText();
+            if (txt === last) stable += 200;
+            else stable = 0;
+
+            last = txt;
+            await new Promise(r => setTimeout(r, 200));
+        }
+
+        return last;
     }
 
     abstract ask(prompt: string): Promise<string>;

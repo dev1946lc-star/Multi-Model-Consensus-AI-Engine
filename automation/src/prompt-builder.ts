@@ -9,3 +9,21 @@ export const buildJudgePrompt = (a: string, b: string) =>
 
 export const buildFilePrompt = (filePath: string, spec: string) =>
     `Create the file ${filePath} for this project:\n${spec}`;
+
+export const buildAppPrompt = (specJson: string) => `
+You are an expert software generator.
+
+Generate a complete project.
+
+Output STRICT JSON only:
+
+{
+  "files": [
+    { "path": "src/App.tsx", "content": "..." }
+  ],
+  "dependencies": ["react"]
+}
+
+App spec:
+${specJson}
+`;
